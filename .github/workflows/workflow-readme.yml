@@ -1,0 +1,32 @@
+name: Generate Snake & Update Stats
+
+on:
+  schedule:
+    - cron: "0 0 * * *"  # প্রতিদিন রাত 12 টায় (UTC) রান হবে
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # 1️⃣ Checkout Repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # 2️⃣ Generate Snake Animation
+      - name: Generate Snake Animation
+        uses: Platane/snk@master
+        with:
+          github_user_name: pgrmrmortuja
+          outputs: dist/github-contribution-grid-snake.svg
+
+      # 3️⃣ Push Snake Animation to Output Branch
+      - name: Push Snake Animation to output branch
+        uses: EndBug/add-and-commit@v9
+        with:
+          author_name: GitHub Actions
+          author_email: actions@github.com
+          message: "🐍 Generate Snake Animation"
+          add: "dist/github-contribution-grid-snake.svg"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
