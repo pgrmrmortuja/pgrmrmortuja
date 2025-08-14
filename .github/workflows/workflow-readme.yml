@@ -18,7 +18,7 @@ jobs:
         uses: Platane/snk@master
         with:
           github_user_name: pgrmrmortuja
-          outputs: dist/github-contribution-grid-snake.svg
+          outputs: output/github-contribution-grid-snake.svg
 
       # 3️⃣ Push Snake Animation to Output Branch
       - name: Push Snake Animation to output branch
@@ -27,6 +27,6 @@ jobs:
           author_name: GitHub Actions
           author_email: actions@github.com
           message: "🐍 Generate Snake Animation"
-          add: "dist/github-contribution-grid-snake.svg"
+          add: "output/github-contribution-grid-snake.svg"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
