@@ -3,7 +3,7 @@ name: Generate Snake & Update Stats
 on:
   schedule:
     - cron: "0 0 * * *"  
-  workflow_dispatch:
+  workflow_dispatch: 
 
 jobs:
   build:
@@ -18,17 +18,17 @@ jobs:
         uses: Platane/snk@master
         with:
           github_user_name: pgrmrmortuja
-          outputs: dist/github-contribution-grid-snake.svg
+          outputs: github-contribution-grid-snake.svg
 
-      # 3️⃣ Push Snake Animation to Output Branch
-      - name: Push Snake Animation to output branch
+      # 3️⃣ Commit & Push Snake to main branch
+      - name: Push Snake Animation to main
         uses: EndBug/add-and-commit@v9
         with:
           author_name: GitHub Actions
           author_email: actions@github.com
-          message: "🐍 Generate Snake Animation"
-          add: "dist/github-contribution-grid-snake.svg"
+          message: "🐍 Update Snake Animation"
+          add: "github-contribution-grid-snake.svg"
           push: true
-          branch: output
+          branch: main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
